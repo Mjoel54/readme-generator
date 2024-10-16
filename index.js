@@ -7,7 +7,7 @@ import fs from "fs";
 const questions = [
   {
     type: "input",
-    name: "Project Title",
+    name: "Title",
     message: colors.magenta("Project title: "),
   },
   {
@@ -68,7 +68,42 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+  const readmeContent = `
+  # ${data.Title}
+  
+  ## Description
+  ${data.Description}
+  
+  ## Installation
+  ${data.Installation}
+  
+  ## Usage
+  ${data.Usage}
+  
+  ## Contributing
+  ${data.Contributing}
+  
+  ## Tests
+  ${data.Tests}
+  
+  ## License
+  ${data.License}
+  
+  ## Questions
+  Contact me with any questions!
+
+  Github: https://github.com/${data.Username}
+  Email: ${data.Email}
+  `;
+  fs.writeFile(fileName, readmeContent, (err) => {
+    if (err) {
+      console.error("Error writing file: ", err);
+    } else {
+      console.log("README.md has been generated successfully!");
+    }
+  });
+}
 
 // TODO: Create a function to initialize app
 function init() {}
