@@ -4,7 +4,9 @@ import colors from "colors";
 import fs from "fs";
 
 // Global variables
-// let year = new Date().getFullYear();
+let year = new Date().getFullYear();
+let licenseDescription = "";
+let licenseBadge = "";
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -58,7 +60,6 @@ const questions = [
       "Eclipse Public License 2.0",
       "GNU Affero General Public License v3.0",
       "GNU General Public License v2.0",
-      "GNU Lesser General Public License v2.1",
       "Mozilla Public License 2.0",
       "The Unlicense",
     ],
@@ -77,59 +78,66 @@ const questions = [
 
 // TODO: Create a function to assign a license description based on user selection
 function getLicenseDescription(selectedLicense) {
-  let licenseDescription = "";
   switch (selectedLicense) {
     case "Apache License 2.0":
       licenseDescription =
         "A permissive license that allows you to freely use, modify, and distribute the software, with attribution.";
+      licenseBadge = `[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)`;
       break;
     case "GNU General Public License v3.0":
       licenseDescription =
         "A strong copyleft license that requires modifications to be released as open-source if distributed.";
+      licenseBadge = `[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)`;
       break;
     case "MIT License":
       licenseDescription =
         "A permissive license that allows reuse with virtually no restrictions, with attribution required.";
+      licenseBadge = `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`;
       break;
     case "BSD 2-Clause 'Simplified' License":
       licenseDescription =
         "A permissive license similar to the MIT License, but with a simpler structure.";
+      licenseBadge = `[![License](https://img.shields.io/badge/License-BSD_2--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)`;
       break;
     case "BSD 3-Clause 'New' or 'Revised' License":
       licenseDescription =
         "A permissive license like the BSD 2-Clause License, but with an additional clause prohibiting endorsement of derived products.";
+      licenseBadge = `[![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)`;
       break;
     case "Boost Software License 1.0":
       licenseDescription =
         "A permissive license that is specifically designed for the Boost C++ Libraries.";
+      licenseBadge = `[![License](https://img.shields.io/badge/License-Boost_1.0-lightblue.svg)](https://www.boost.org/LICENSE_1_0.txt)`;
       break;
     case "Creative Commons Zero v1.0 Universal":
       licenseDescription =
         "A public domain dedication that allows you to do anything with the work without restrictions.";
+      licenseBadge = `[![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)`;
       break;
     case "Eclipse Public License 2.0":
       licenseDescription =
         "A weak copyleft license that requires modifications to be open-sourced if distributed as binaries.";
+      licenseBadge = `[![License](https://img.shields.io/badge/License-EPL_1.0-red.svg)](https://opensource.org/licenses/EPL-1.0)`;
       break;
     case "GNU Affero General Public License v3.0":
       licenseDescription =
         "A copyleft license that extends the GPL to cover remote network interactions.";
+      licenseBadge = `[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)`;
       break;
     case "GNU General Public License v2.0":
       licenseDescription =
         "An older version of the GPL, requiring derivative works to be licensed under the same terms.";
-      break;
-    case "GNU Lesser General Public License v2.1":
-      licenseDescription =
-        "A weak copyleft license primarily used for software libraries, allowing linking to non-GPL software.";
+      licenseBadge = `[![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)`;
       break;
     case "Mozilla Public License 2.0":
       licenseDescription =
         "A weak copyleft license that allows linking with non-open-source code.";
+      licenseBadge = `[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)`;
       break;
     case "The Unlicense":
       licenseDescription =
         "A public domain dedication that allows you to do anything with the code without any conditions.";
+      licenseBadge = `[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)`;
       break;
     default:
       licenseDescription = "Unknown license selected.";
@@ -141,6 +149,7 @@ function writeToFile(fileName, data) {
   let licenseDescription = getLicenseDescription(data.License);
   const readmeContent = `
   # ${data.Title}
+  ${licenseBadge}
   
   ## Description
   ${data.Description}
