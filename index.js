@@ -154,6 +154,14 @@ function writeToFile(fileName, data) {
   ## Description
   ${data.Description}
   
+  ## Table of Contents
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Contributing](#contributing)
+  - [Tests](#tests)
+  - [License](#license)
+  - [Questions](#questions)
+
   ## Installation
   ${data.Installation}
   
