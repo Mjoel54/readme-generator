@@ -96,7 +96,7 @@ function init() {
   inquirer
     .prompt(questions)
     .then((answers) => {
-      writeToFile("README.md", answers);
+      writeToFile("./Readme-files/README.md", answers);
     })
     .catch((error) => {
       console.error("Error initializing app: ", error);
